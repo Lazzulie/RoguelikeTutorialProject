@@ -36,7 +36,6 @@ public class BoardManager : MonoBehaviour
     void InitializeList()
     {
         gridPositions.Clear();
-
         for(int x = 1; x < columns - 1; x++)
         {
             for(int y = 1; y < rows - 1; y++)
@@ -60,7 +59,7 @@ public class BoardManager : MonoBehaviour
                     toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
                 }
 
-                GameObject instance = toInstantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+                GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
 
                 instance.transform.SetParent(boardHolder);
             }
@@ -80,8 +79,8 @@ public class BoardManager : MonoBehaviour
         int objectCount = Random.Range(min, max + 1);
         for(int i = 0; i < objectCount; i++)
         {
-            Vector3 randPos = RandomPosition();
-            GameOBject tileChoice = tileArray[Random.Range(0, tileArray.Length)];
+            Vector3 randPos = RandPos();
+            GameObject tileChoice = tileArray[Random.Range(0, tileArray.Length)];
             Instantiate(tileChoice, randPos, Quaternion.identity);
         }
     }
